@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:valorian_mobile/app/components/flex_component.dart';
+import 'package:valorian_mobile/app/store/student_store.dart';
 
 class FirstForm extends StatelessWidget {
   final TextEditingController controller;
-  const FirstForm({super.key, required this.controller});
-
+  FirstForm({super.key, required this.controller});
+  final StudentStore store = Modular.get();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -25,14 +27,16 @@ class FirstForm extends StatelessWidget {
                 const FlexComponent(),
                 Expanded(
                     flex: 10,
-                    child: TextField(
+                    child: TextFormField(
                       autofocus: false,
                       controller: controller,
                       decoration: const InputDecoration(
                         label: Text('Nome do estudante'),
                         filled: true,
                       ),
-                      onTap: () {},
+                      onChanged: (value) {
+                        store.setName(value);
+                      },
                     )),
                 const FlexComponent(),
               ],

@@ -10,4 +10,6 @@ class AppColors {
   static Color blackColor = Colors.black;
   static Color successColor = const Color.fromARGB(255, 139, 187, 141);
   static Color errorColor = Colors.black;
+  static Color pinkColor = const Color.fromARGB(255, 250, 113, 159);
+  static Color neutralColor = const Color.fromARGB(255, 156, 119, 226);
 }

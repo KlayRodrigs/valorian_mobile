@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:valorian_mobile/app/components/flex_component.dart';
+import 'package:valorian_mobile/app/store/student_store.dart';
 
 class SecondForm extends StatefulWidget {
   final TextEditingController controller;
@@ -13,6 +15,7 @@ class SecondForm extends StatefulWidget {
 class _SecondFormState extends State<SecondForm> {
   final DateTime _dateNow = DateTime.now();
   String formattedDate = '';
+  StudentStore store = Modular.get();
 
   String formatter(DateTime value) {
     return formattedDate = DateFormat('dd/MM/yyyy').format(value);
@@ -37,14 +40,13 @@ class _SecondFormState extends State<SecondForm> {
               const FlexComponent(),
               Expanded(
                 flex: 10,
-                child: TextField(
+                child: TextFormField(
                   readOnly: true,
                   controller: widget.controller,
                   decoration: const InputDecoration(
                       filled: true, label: Text('Data de nascimento')),
                   onTap: () async {
                     var dateNow = await showDatePicker(
-                        locale: const Locale('pt', 'BR'),
                         helpText: 'Selecione a data de nascimento',
                         currentDate: _dateNow,
                         context: context,
@@ -53,6 +55,7 @@ class _SecondFormState extends State<SecondForm> {
                         lastDate: _dateNow);
                     if (dateNow != null) {
                       widget.controller.text = formatter(dateNow);
+                      store.setDate(widget.controller.text);
                     }
                   },
                 ),
