@@ -1,6 +1,6 @@
 {
-    "name": "valorian_mobile1",
-    "short_name": "valorian_mobile1",
+    "name": "valorian_mobile",
+    "short_name": "valorian_mobile",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
